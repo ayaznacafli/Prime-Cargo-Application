@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        PMD RuleSets set by Quality Enforcement team for DevFactory projects
+    </description>
+
+    <!-- Best practices Category -->
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnitTestContainsTooManyAsserts"/>
+        <exclude name="GuardLogStatement"/>
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+    </rule>
+
+    <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../Annotation/NormalAnnotation[Name[@Image='NoArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PROTECTED']
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.NoArgsConstructor']) = 1]
+                or
+                ../Annotation/NormalAnnotation[Name[@Image='RequiredArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PROTECTED']
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.RequiredArgsConstructor']) = 1]
+                or
+                ../Annotation/NormalAnnotation[Name[@Image='AllArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PROTECTED']
+                    and count(//ImportDeclaration/Name[@Image='lombok.AllArgsConstructor']) = 1]
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../Annotation/NormalAnnotation[Name[@Image='AssertTrue']
+                    and
+                    count(//ImportDeclaration/Name[@Image='javax.validation.constraints.AssertTrue']) = 1]
+                or
+                ../../Annotation/MarkerAnnotation[Name[@Image='PrePersist']
+                    and
+                    count(//ImportDeclaration/Name[@Image='javax.persistence.PrePersist']) = 1]
+                or
+                ../../Annotation/MarkerAnnotation[Name[@Image='PreUpdate']
+                    and
+                    count(//ImportDeclaration/Name[@Image='javax.persistence.PreUpdate']) = 1]
+                or
+                ../../Annotation/MarkerAnnotation[Name[@Image='PostLoad']
+                    and
+                    count(//ImportDeclaration/Name[@Image='javax.persistence.PostLoad']) = 1]
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../../Annotation/*[Name[@Image='Mock']
+                    and
+                    count(//ImportDeclaration/Name[@Image='org.mockito.Mock']) = 1]
+            ]"/>
+        </properties>
+    </rule>
+
+    <!-- CodeStyle Category -->
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="OnlyOneReturn"/>
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="CallSuperInConstructor"/>
+        <exclude name="DefaultPackage"/>
+        <exclude name="AvoidFinalLocalVariable"/>
+        <exclude name="ConfusingTernary"/>
+        <exclude name="TooManyStaticImports"/>
+        <exclude name="AbstractNaming"/>
+        <exclude name="MethodArgumentCouldBeFinal"/>
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="UseUnderscoresInNumericLiterals"/>
+        <exclude name="LinguisticNaming"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="30"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ShortClassName">
+        <properties>
+            <property name="minimum" value="3"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../Annotation/*[Name[@Image='Test']
+                    and
+                    count(//ImportDeclaration/Name[@Image='org.junit.Test']) = 1]
+                or
+                //ClassOrInterfaceDeclaration[matches(@Image,'.*Test$')]
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+        <properties>
+            <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*"/>
+        </properties>
+    </rule>
+
+    <!-- Design Category -->
+    <rule ref="category/java/design.xml">
+        <exclude name="LawOfDemeter"/>
+        <exclude name="ExcessiveImports"/>
+        <exclude name="LoosePackageCoupling"/>
+        <exclude name="DataClass"/>
+    </rule>
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                //ClassOrInterfaceDeclaration[../Annotation/*/Name[@Image='RestControllerAdvice']]
+                or
+                //ClassOrInterfaceDeclaration[../Annotation/*/Name[@Image='ControllerAdvice']]
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ImmutableField">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../../../../../Annotation/*/Name[@Image='Setter']
+                or
+                ../../../../../../Annotation/*/Name[@Image='Data']
+                or
+                ../../../../../../Annotation/*/Name[@Image='NoArgsConstructor']
+                or
+                ../../../Annotation/*/Name[@Image='Setter']
+                or
+                ../../../Annotation/*/Name[@Image='CreatedDate']
+                or
+                ../../../Annotation/*/Name[@Image='LastModifiedDate']
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SingularField">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../../../Annotation/*/Name[@Image='Setter']
+                or
+                ../../../../Annotation/*/Name[@Image='Getter']
+                or
+                ../../../../Annotation/*/Name[@Image='Data']
+                or
+                ../../../Annotation/*/Name[@Image='Setter']
+                or
+                ../../../Annotation/*/Name[@Image='Getter']
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../Annotation/NormalAnnotation[Name[@Image='NoArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PRIVATE']
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.NoArgsConstructor']) = 1]
+                or
+                ../Annotation/NormalAnnotation[Name[@Image='NoArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PROTECTED']
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.NoArgsConstructor']) = 1]
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/UseUtilityClass">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../Annotation/NormalAnnotation[Name[@Image='NoArgsConstructor']
+                    and
+                    MemberValuePairs//PrimaryPrefix/Name[@Image='AccessLevel.PRIVATE']
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.NoArgsConstructor']) = 1]
+                or
+                ../../Annotation/MarkerAnnotation/Name[@Image='UtilityClass'
+                    and
+                    count(//ImportDeclaration/Name[@Image='lombok.experimental.UtilityClass']) = 1]
+                    or
+                    ../../Annotation/*/Name[@Image='SpringBootApplication']
+            ]"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
+        <properties>
+            <property name="IgnoreJUnitCompletely" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="15"/>
+            <property name="violationSuppressXPath" value=".[
+                //ClassOrInterfaceDeclaration[../Annotation/*/Name[@Image='RestControllerAdvice']]
+                or
+                //ClassOrInterfaceDeclaration[../Annotation/*/Name[@Image='ControllerAdvice']]
+                or
+                //ClassOrInterfaceDeclaration[matches(@Image,'.*Test$')]
+            ]"/>
+        </properties>
+    </rule>
+
+    <!-- Documentation Category -->
+    <rule ref="category/java/documentation.xml">
+        <exclude name="CommentRequired"/>
+    </rule>
+
+    <rule ref="category/java/documentation.xml/CommentSize">
+        <properties>
+            <property name="maxLines" value="30"/>
+            <property name="maxLineLength" value="120"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/documentation.xml/UncommentedEmptyMethodBody">
+        <properties>
+            <property name="violationSuppressXPath" value=".[
+                ../../Annotation/SingleMemberAnnotation[Name[@Image='Pointcut']
+                    and
+                    count(//ImportDeclaration/Name[@Image='org.aspectj.lang.annotation.Pointcut']) = 1]
+            ]"/>
+        </properties>
+    </rule>
+
+    <!-- Error Prone Category -->
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="AssignmentInOperand"/>
+        <exclude name="NullAssignment"/>
+        <exclude name="UseLocaleWithCaseConversions"/>
+        <exclude name="JUnitSpelling"/>
+        <exclude name="AvoidFieldNameMatchingTypeName"/>
+        <exclude name="AvoidFieldNameMatchingMethodName"/>
+        <exclude name="BeanMembersShouldSerialize"/>
+    </rule>
+
+    <!-- Multi-Threading practices Category -->
+    <rule ref="category/java/multithreading.xml">
+        <exclude name="AvoidUsingVolatile"/>
+        <exclude name="UseConcurrentHashMap"/>
+    </rule>
+
+    <!-- Performance Category -->
+    <rule ref="category/java/performance.xml">
+        <exclude name="UseStringBufferForStringAppends"/>
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
+        <exclude name="AvoidFileStream"/>
+    </rule>
+
+    <!-- Security Category -->
+    <rule ref="category/java/security.xml"/>
+</ruleset>
