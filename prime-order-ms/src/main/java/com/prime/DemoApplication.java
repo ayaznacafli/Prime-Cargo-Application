@@ -15,9 +15,9 @@ public class DemoApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext contex = SpringApplication.run(DemoApplication.class, args);
 
-        OrderRepository orderRepository = contex.getBean(OrderRepository.class);
-        Iterable<Order> orders = orderRepository.findAll();
-        System.out.println(orders);
+  //      OrderRepository orderRepository = contex.getBean(OrderRepository.class);
+  //      Iterable<Order> orders = orderRepository.findAll();
+  //      System.out.println(orders);
 
     }
 

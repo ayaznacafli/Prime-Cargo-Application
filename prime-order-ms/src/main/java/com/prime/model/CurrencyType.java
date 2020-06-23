@@ -3,7 +3,10 @@ package com.prime.model;
 public enum CurrencyType {
     TL("TL"),
     AZN("AZN"),
-    RUB("RUB");
+    RUB("RUB"),
+    USD("USD"),
+    EUR("EUR");
+
 
     private String value;
 

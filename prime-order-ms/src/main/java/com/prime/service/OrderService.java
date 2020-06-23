@@ -1,12 +1,11 @@
 package com.prime.service;
 
 import com.prime.dto.CreateOrderDto;
-import com.prime.dto.OrderFilterDto;
+import com.prime.dto.OrderListOperatorDTO;
 import com.prime.dto.OrderListUserDto;
 import com.prime.model.Order;
+
 import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
 
@@ -20,6 +19,6 @@ public interface OrderService {
 
     void chooseOrder(long orderId, long operatorId);
 
-    Iterable<Order> getOrderListForOperator(OrderFilterDto orderFilterDto, Pageable pageable);
+    List<OrderListOperatorDTO> getOrderListForOperator();
 
 }

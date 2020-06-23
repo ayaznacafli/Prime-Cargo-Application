@@ -2,6 +2,7 @@ package com.prime.controller;
 
 
 import com.prime.dto.OrderFilterDto;
+import com.prime.dto.OrderListOperatorDTO;
 import com.prime.model.Order;
 import com.prime.service.OrderService;
 import javax.validation.constraints.Positive;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Validated
 @RestController
@@ -36,10 +39,8 @@ public class OrderControllerOperator {
     }
 
     @GetMapping
-    public Iterable<Order> getOrderList(){
-        OrderFilterDto orderFilterDto = new OrderFilterDto("id","ASC");
-        PageRequest pageable = PageRequest.of(2,10);
-        return orderService.getOrderListForOperator(orderFilterDto, pageable);
+    public List<OrderListOperatorDTO> getOrderList(){
+        return orderService.getOrderListForOperator();
     }
 
 

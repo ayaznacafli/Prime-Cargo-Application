@@ -3,6 +3,7 @@ package com.prime.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,12 +18,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+import lombok.*;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "order_date_info_tb")
 @Builder
@@ -36,22 +36,15 @@ public class OrderDateInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDateUser;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDateUser;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDateOperator;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createForeignWarehouse;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createLocalWarehouse;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createHandover;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date deletedDateUser;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date chooseOperatorDate;
+
+    private LocalDateTime createDateUser;
+    private LocalDateTime updatedDateUser;
+    private LocalDateTime createDateOperator;
+    private LocalDateTime createForeignWarehouse;
+    private LocalDateTime createLocalWarehouse;
+    private LocalDateTime createHandover;
+    private LocalDateTime deletedDateUser;
+    private LocalDateTime chooseOperatorDate;
 
 
  //   @JsonIgnore

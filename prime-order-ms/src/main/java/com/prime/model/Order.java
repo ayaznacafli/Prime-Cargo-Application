@@ -18,13 +18,13 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+import lombok.*;
+
 @Entity
+@Setter
+@Getter
+@ToString
 @Table(name = "order_ms")
 @Builder
 @NoArgsConstructor
@@ -52,22 +52,18 @@ public class Order implements Serializable {
 
     private long userId;
     private long operatorId;
-    private Long orderCode;
     private int deletedStatus;
     private int status;
 
-    private String categoryName;
 
-    private double orderWeight;
-    private double orderWidth;
-    private double orderHeigh;
-    private double orderLength;
-    private String foreignLocation;
-    private String localLocation;
-    private String barCode;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name="date_info_id")
     private OrderDateInfo orderDateInfo;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name="order_quantity_id")
+    private OrderQuantity orderQuantity;
+
 
 }

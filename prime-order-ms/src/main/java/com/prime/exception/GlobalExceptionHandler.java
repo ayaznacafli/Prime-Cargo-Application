@@ -40,7 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity handleConstraintViolationException(OrderNotFoundException ex)
+    public ResponseEntity handleOrderNotFoundException(OrderNotFoundException ex)
             throws IOException {
         ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(OrderNotUpdateException.class)
-    public ResponseEntity handleConstraintViolationException(OrderNotUpdateException ex)
+    public ResponseEntity handleOrderNotUpdateException(OrderNotUpdateException ex)
             throws IOException {
         ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
@@ -60,7 +60,38 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(InvalidDefinitionException.class)
-    public ResponseEntity handleConstraintViolationException(InvalidDefinitionException ex)
+    public ResponseEntity handleInvalidDefinitionException(InvalidDefinitionException ex)
+            throws IOException {
+        ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                ex.getMessage(),
+                Calendar.getInstance());
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderNotDeleteException.class)
+    public ResponseEntity handleOrderNotDeleteException(OrderNotDeleteException ex)
+            throws IOException {
+        ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                ex.getMessage(),
+                Calendar.getInstance());
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderDateInfoNotFoundException.class)
+    public ResponseEntity handleOrderDateInfoNotFoundException(OrderDateInfoNotFoundException ex)
+            throws IOException {
+        ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                ex.getMessage(),
+                Calendar.getInstance());
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(OrderQuantityNotFoundException.class)
+    public ResponseEntity handleOrderQuantityNotFoundException(OrderQuantityNotFoundException ex)
             throws IOException {
         ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),

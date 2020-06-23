@@ -1,42 +1,54 @@
 package com.prime.service.impl;
 
 import com.prime.dto.CreateOrderDto;
-import com.prime.dto.OrderFilterDto;
+import com.prime.dto.OrderListOperatorDTO;
 import com.prime.dto.OrderListUserDto;
 import com.prime.exception.OrderNotDeleteException;
 import com.prime.exception.OrderNotFoundException;
 import com.prime.exception.OrderNotUpdateException;
-import com.prime.model.CurrencyType;
-import com.prime.model.Order;
-import com.prime.model.OrderDateInfo;
-import com.prime.model.StatusType;
-import com.prime.repository.OrderDateInfoRepository;
+import com.prime.model.*;
 import com.prime.repository.OrderRepository;
 import com.prime.service.OrderDateInfoService;
+import com.prime.service.OrderQuantityService;
 import com.prime.service.OrderService;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@PropertySource("classpath:currency.properties")
 public class OrderServiceImpl implements OrderService {
 
+    @Value("${currency.rub}")
+    private double rub;
+    @Value("${currency.usd}")
+    private double usd;
+    @Value("${currency.tl}")
+    private double tl;
+    @Value("${currency.azn}")
+    private double azn;
+    @Value("${currency.eur}")
+    private double eur;
+
     private final OrderRepository orderRepository;
-    private final OrderDateInfoService dateInfoService;
+    private final OrderDateInfoService infoService;
+    private final OrderQuantityService quantityService;
 
     @Override
     public long createOrder(long userId, CreateOrderDto orderDto) {
         Order order = Order.builder().userId(userId).build();
         orderDtoMapperOrder(orderDto,order);
-        order.setOrderDateInfo(OrderDateInfo.builder().createDateUser(new Date()).build());
+        order.setOrderDateInfo(OrderDateInfo.builder().createDateUser(LocalDateTime.now()).build());
         order.setStatus(StatusType.NEW.getId());
+        order.setTotalPrice(this.getTotalPrice(order));
+        order.setOrderQuantity(new OrderQuantity());
         Order result = orderRepository.save(order);
         return result.getId();
     }
@@ -47,8 +59,12 @@ public class OrderServiceImpl implements OrderService {
                 new OrderNotFoundException(orderId));
         orderDtoMapperOrder(orderDto,order);
         if (order.getStatus() <= 1) {
-            System.out.println(dateInfoService.getOrderDateInfoByOrderId(orderId));
-            order.setOrderDateInfo(OrderDateInfo.builder().updatedDateUser(new Date()).build());
+            OrderDateInfo info = infoService.getOrderDateInfoById(order.getOrderDateInfo().getId());
+            OrderQuantity quantity = quantityService.getOrderQuantityById(order.getOrderQuantity().getId());
+            info.setUpdatedDateUser(LocalDateTime.now());
+            order.setOrderDateInfo(info);
+            order.setOrderQuantity(quantity);
+            order.setTotalPrice(this.getTotalPrice(order));
             orderRepository.save(order);
         } else {
             throw new OrderNotUpdateException(orderId);
@@ -60,8 +76,12 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new OrderNotFoundException(orderId));
         if (order.getStatus() == 0) {
+            OrderDateInfo info = infoService.getOrderDateInfoById(order.getOrderDateInfo().getId());
+            OrderQuantity quantity = quantityService.getOrderQuantityById(order.getOrderQuantity().getId());
+            info.setDeletedDateUser(LocalDateTime.now());
+            order.setOrderDateInfo(info);
+            order.setOrderQuantity(quantity);
             order.setDeletedStatus(1);
-            order.setOrderDateInfo(OrderDateInfo.builder().deletedDateUser(new Date()).build());
             orderRepository.save(order);
         } else {
             throw new OrderNotDeleteException(orderId);
@@ -72,19 +92,18 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderListUserDto> getOrderListWithUserId(long userId) {
         List<OrderListUserDto> dtoList = new LinkedList<>();
         Iterable<Order> orderList = orderRepository.findAllByUserId(userId);
-        System.out.println(orderList);
         orderList.forEach(order -> {
-                    OrderListUserDto dto = OrderListUserDto.builder()
-                            .link(order.getLink())
-                            .orderId(order.getId())
-                            .status(getStatusById(order.getStatus()))
-                            .carriageOrder(order.getCarriageOrder())
-                            .totalPrice(order.getTotalPrice())
-                            .count(order.getCount())
-                            .createDate(order.getOrderDateInfo().getCreateDateUser())
-                            .build();
-                    dtoList.add(dto);
-                });
+            OrderListUserDto dto = OrderListUserDto.builder()
+                    .link(order.getLink())
+                    .orderId(order.getId())
+                    .status(getStatusById(order.getStatus()).getMessage())
+                    .carriageOrder(order.getCarriageOrder())
+                    .totalPrice(order.getTotalPrice())
+                    .count(order.getCount())
+                    .createDate(order.getOrderDateInfo().getCreateDateUser())
+                    .build();
+            dtoList.add(dto);
+        });
         return dtoList;
     }
 
@@ -94,7 +113,11 @@ public class OrderServiceImpl implements OrderService {
                 new OrderNotFoundException(orderId));
         if (order.getStatus() == 1) {
             order.setOperatorId(operatorId);
-            order.setOrderDateInfo(OrderDateInfo.builder().chooseOperatorDate(new Date()).build());
+            OrderDateInfo info = infoService.getOrderDateInfoById(order.getOrderDateInfo().getId());
+            OrderQuantity quantity = quantityService.getOrderQuantityById(order.getOrderQuantity().getId());
+            info.setChooseOperatorDate(LocalDateTime.now());
+            order.setOrderDateInfo(info);
+            order.setOrderQuantity(quantity);
             orderRepository.save(order);
         } else {
             throw new OrderNotUpdateException(orderId);
@@ -103,8 +126,27 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Iterable<Order> getOrderListForOperator(OrderFilterDto orderFilterDto, Pageable pageable) {
-        return orderRepository.findAllByDeletedStatusAndStatus(0,1);
+    public List<OrderListOperatorDTO> getOrderListForOperator() {
+        List<OrderListOperatorDTO> dtoList = new LinkedList<>();
+        Iterable<Order> iterable = orderRepository.findAllByDeletedStatusAndStatus(0,1);
+        iterable.forEach(order -> {
+            OrderListOperatorDTO dto = OrderListOperatorDTO.builder()
+                    .id(order.getId())
+                    .currency(order.getCurrency().getValue())
+                    .cargoPrice(order.getCargoPrice())
+                    .carriageOrder(order.getCarriageOrder())
+                    .count(order.getCount())
+                    .descriptionOperator(order.getDescriptionOperator())
+                    .descriptionUser(order.getDescriptionUser())
+                    .link(order.getLink())
+                    .price(order.getPrice())
+                    .status(getStatusById(order.getStatus()).getMessage())
+                    .totalPrice(order.getTotalPrice())
+                    .userId(order.getUserId())
+                    .build();
+            dtoList.add(dto);
+                });
+        return dtoList;
     }
 
     private void orderDtoMapperOrder(CreateOrderDto dto, Order order) {
@@ -112,7 +154,6 @@ public class OrderServiceImpl implements OrderService {
         order.setPrice(dto.getPrice());
         order.setCount(dto.getCount());
         order.setCargoPrice(dto.getCargoPrice());
-        order.setTotalPrice(getTotalPrice(dto));
         order.setCurrency(this.getCurrency(dto.getCurrencyType()));
         order.setDescriptionUser(dto.getDescriptionUser());
     }
@@ -122,18 +163,35 @@ public class OrderServiceImpl implements OrderService {
             return CurrencyType.AZN;
         } else if (currency.equalsIgnoreCase(CurrencyType.RUB.getValue())) {
             return CurrencyType.RUB;
-        } else if (currency.equalsIgnoreCase(CurrencyType.RUB.getValue())) {
+        } else if (currency.equalsIgnoreCase(CurrencyType.TL.getValue())) {
             return CurrencyType.TL;
+        } else if (currency.equalsIgnoreCase(CurrencyType.EUR.getValue())) {
+            return CurrencyType.EUR;
+        } else if (currency.equalsIgnoreCase(CurrencyType.USD.getValue())) {
+            return CurrencyType.USD;
         } else {
             return null;
         }
     }
 
-    private double getTotalPrice(CreateOrderDto dto) {
-        double price = dto.getPrice();
-        int count = dto.getCount();
-        double cargo = dto.getCargoPrice();
-        return price * count + cargo;
+    private double getTotalPrice(Order order) {
+        if(order.getCurrency().getValue().equalsIgnoreCase("rub")){
+            return mathPrice(order,rub);
+        } else if (order.getCurrency().getValue().equalsIgnoreCase("usd")) {
+            return mathPrice(order,usd);
+        }  else if (order.getCurrency().getValue().equalsIgnoreCase("eur")) {
+            return mathPrice(order,eur);
+        } else if (order.getCurrency().getValue().equalsIgnoreCase("tl")) {
+            return mathPrice(order,tl);
+        } else {
+            return mathPrice(order,azn);
+        }
+    }
+    private double mathPrice(Order order, double countruCurriency) {
+        double price = order.getPrice();
+        int count = order.getCount();
+        double cargo = order.getCargoPrice();
+        return (price * count + cargo)*countruCurriency;
     }
 
     private StatusType getStatusById(int statusId) {

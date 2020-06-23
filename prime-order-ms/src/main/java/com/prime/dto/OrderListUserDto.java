@@ -1,6 +1,8 @@
 package com.prime.dto;
 
 import com.prime.model.StatusType;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +17,8 @@ public class OrderListUserDto {
     private long orderId;
     private String link;
     private int count;
-    private Date createDate;
+    private LocalDateTime createDate;
     private double totalPrice;
     private double carriageOrder;
-    private StatusType status;
+    private String status;
 }
