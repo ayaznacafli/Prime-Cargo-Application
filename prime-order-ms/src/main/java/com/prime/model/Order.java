@@ -1,8 +1,6 @@
 package com.prime.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
@@ -58,11 +57,11 @@ public class Order implements Serializable {
 
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
-    @JoinColumn(name="date_info_id")
+    @JoinColumn(name = "date_info_id")
     private OrderDateInfo orderDateInfo;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
-    @JoinColumn(name="order_quantity_id")
+    @JoinColumn(name = "order_quantity_id")
     private OrderQuantity orderQuantity;
 
 

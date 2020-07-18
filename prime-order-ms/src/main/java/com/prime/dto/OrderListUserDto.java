@@ -1,9 +1,6 @@
 package com.prime.dto;
 
-import com.prime.model.StatusType;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

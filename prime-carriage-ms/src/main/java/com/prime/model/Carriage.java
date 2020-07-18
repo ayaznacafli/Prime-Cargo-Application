@@ -1,13 +1,14 @@
 package com.prime.model;
 
-import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,23 +41,14 @@ public class Carriage {
     private String descriptionUser;
     private String orderCode;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDateUser;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDateUser;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createForeignWarehouse;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createLocalWarehouse;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createHandover;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date deletedDateUser;
 
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "date_info_id")
+    private CarrigeDateInfo dateInfo;
 
-    private double orderWeight;
-    private double orderWidth;
-    private double orderHeigh;
-    private double orderLength;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "quantity_info_id")
+    private CarrigeQuantity quantity;
+
 }
 

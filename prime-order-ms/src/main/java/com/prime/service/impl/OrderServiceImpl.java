@@ -6,16 +6,18 @@ import com.prime.dto.OrderListUserDto;
 import com.prime.exception.OrderNotDeleteException;
 import com.prime.exception.OrderNotFoundException;
 import com.prime.exception.OrderNotUpdateException;
-import com.prime.model.*;
+import com.prime.model.CurrencyType;
+import com.prime.model.Order;
+import com.prime.model.OrderDateInfo;
+import com.prime.model.OrderQuantity;
+import com.prime.model.StatusType;
 import com.prime.repository.OrderRepository;
 import com.prime.service.OrderDateInfoService;
 import com.prime.service.OrderQuantityService;
 import com.prime.service.OrderService;
-
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -128,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderListOperatorDTO> getOrderListForOperator() {
         List<OrderListOperatorDTO> dtoList = new LinkedList<>();
-        Iterable<Order> iterable = orderRepository.findAllByDeletedStatusAndStatus(0,1);
+        Iterable<Order> iterable = orderRepository.findAllByDeletedStatus(0,1);
         iterable.forEach(order -> {
             OrderListOperatorDTO dto = OrderListOperatorDTO.builder()
                     .id(order.getId())
@@ -144,8 +146,8 @@ public class OrderServiceImpl implements OrderService {
                     .totalPrice(order.getTotalPrice())
                     .userId(order.getUserId())
                     .build();
-            dtoList.add(dto);
-                });
+            dtoList.add(dto); });
+
         return dtoList;
     }
 
@@ -175,11 +177,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private double getTotalPrice(Order order) {
-        if(order.getCurrency().getValue().equalsIgnoreCase("rub")){
+        if (order.getCurrency().getValue().equalsIgnoreCase("rub")) {
             return mathPrice(order,rub);
         } else if (order.getCurrency().getValue().equalsIgnoreCase("usd")) {
             return mathPrice(order,usd);
-        }  else if (order.getCurrency().getValue().equalsIgnoreCase("eur")) {
+        } else if (order.getCurrency().getValue().equalsIgnoreCase("eur")) {
             return mathPrice(order,eur);
         } else if (order.getCurrency().getValue().equalsIgnoreCase("tl")) {
             return mathPrice(order,tl);
@@ -187,11 +189,12 @@ public class OrderServiceImpl implements OrderService {
             return mathPrice(order,azn);
         }
     }
-    private double mathPrice(Order order, double countruCurriency) {
+
+    private double mathPrice(Order order, double countryCurriency) {
         double price = order.getPrice();
         int count = order.getCount();
         double cargo = order.getCargoPrice();
-        return (price * count + cargo)*countruCurriency;
+        return (price * count + cargo) * countryCurriency;
     }
 
     private StatusType getStatusById(int statusId) {
