@@ -12,9 +12,10 @@ public interface OrderRepository extends CrudRepository<Order,Long> {
 
     Iterable<Order> findAllByUserId(long userId);
 
-    Iterable<Order> findAllByDeletedStatus(int deletedStatus, int status);
+    Iterable<Order> findAllByDeletedStatusAndStatus(int deletedStatus, int status);
 
-    @Query(value = "select s from Order s where s.deletedStatus=? 1 and s.status=? 2")
+    @Query(value = "select s from Order s where s.deletedStatus=:deleteStatus and s.status=:status",nativeQuery = true)
     List<Order> findAllByDeletedStatusEqualsAndStatusEquals(int deletedStatus, int status);
+
 
 }

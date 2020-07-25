@@ -45,7 +45,6 @@
 <file name="C:\Users\HP-2020\Desktop\prime-app\prime-order-ms\src\main\java\com\prime\repository\OrderQuantityRepository.java">
 </file>
 <file name="C:\Users\HP-2020\Desktop\prime-app\prime-order-ms\src\main\java\com\prime\repository\OrderRepository.java">
-<error line="17" severity="error" message="Annotation style must be &apos;COMPACT&apos;." source="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"/>
 </file>
 <file name="C:\Users\HP-2020\Desktop\prime-app\prime-order-ms\src\main\java\com\prime\service\OrderDateInfoService.java">
 </file>

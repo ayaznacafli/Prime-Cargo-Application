@@ -130,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderListOperatorDTO> getOrderListForOperator() {
         List<OrderListOperatorDTO> dtoList = new LinkedList<>();
-        Iterable<Order> iterable = orderRepository.findAllByDeletedStatus(0,1);
+        Iterable<Order> iterable = orderRepository.findAllByDeletedStatusAndStatus(0,1);
         iterable.forEach(order -> {
             OrderListOperatorDTO dto = OrderListOperatorDTO.builder()
                     .id(order.getId())
