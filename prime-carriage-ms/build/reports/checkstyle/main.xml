@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.15">
-<file name="C:\Users\HP-2020\Desktop\prime-app\prime-carriage-ms\src\main\java\com\prime\PrimeApplication.java">
+<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-carriage-ms\src\main\java\com\prime\PrimeApplication.java">
 </file>
-<file name="C:\Users\HP-2020\Desktop\prime-app\prime-carriage-ms\src\main\java\com\prime\model\Carriage.java">
+<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-carriage-ms\src\main\java\com\prime\model\Carriage.java">
 </file>
-<file name="C:\Users\HP-2020\Desktop\prime-app\prime-carriage-ms\src\main\java\com\prime\model\CarrigeDateInfo.java">
+<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-carriage-ms\src\main\java\com\prime\model\CarrigeDateInfo.java">
 </file>
-<file name="C:\Users\HP-2020\Desktop\prime-app\prime-carriage-ms\src\main\java\com\prime\model\CarrigeQuantity.java">
+<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-carriage-ms\src\main\java\com\prime\model\CarrigeQuantity.java">
 </file>
 </checkstyle>

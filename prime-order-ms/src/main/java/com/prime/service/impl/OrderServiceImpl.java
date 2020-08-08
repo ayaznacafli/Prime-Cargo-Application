@@ -113,7 +113,8 @@ public class OrderServiceImpl implements OrderService {
     public void chooseOrder(long orderId, long operatorId) {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new OrderNotFoundException(orderId));
-        if (order.getStatus() == 1) {
+        boolean status = order.getStatus() == 1;
+        if (status) {
             order.setOperatorId(operatorId);
             OrderDateInfo info = infoService.getOrderDateInfoById(order.getOrderDateInfo().getId());
             OrderQuantity quantity = quantityService.getOrderQuantityById(order.getOrderQuantity().getId());
