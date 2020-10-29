@@ -1,18 +1,37 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.bmuschko.docker-remote-api' version "$dockerVersion"
     id 'java'
 }
 
-group = 'com.prime'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+group = 'com.example'
+version = ''
+
+
+allprojects {
+    group = 'com.example'
+    def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+    version = "$projectVersion.$hash"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
+
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation("org.springframework.boot:spring-boot-starter-web")
 
@@ -26,8 +45,34 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation("junit:junit")
 
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: "$swaggerVersion"
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: "$swaggerVersion"
+}
+
+
+task dockerFile(type: Dockerfile, dependsOn: assemble) {
+    destFile.set(project.file('Dockerfile'))
+    from "alpine:$alpineVersion"
+    runCommand 'apk add --no-cache openjdk11'
+    copyFile "build/libs/${jar.archiveFileName.get()}", '/app/'
+    workingDir '/app/'
+    entryPoint 'java'
+    defaultCommand '-jar', "/app/${jar.archiveFileName.get()}"
+}
+
+task dockerBuild(type: DockerBuildImage, dependsOn: dockerFile) {
+    inputDir.set(file('.'))
+    println("pushing image: $dockerRepoUrl/${project.name}:$version")
+    images.add("$dockerRepoUrl/${project.name}:$version")
+}
+
+
+task dockerPush(type: DockerPushImage, dependsOn: dockerBuild) {
+    images.add("$dockerRepoUrl/${project.name}:$version")
+
+    registryCredentials.setUsername("$dockerHubUsername")
+    registryCredentials.setPassword("$dockerHubPassword")
+    registryCredentials.setEmail("$dockerHubEmail")
 }
 
 test {

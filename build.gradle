@@ -5,6 +5,7 @@ buildscript {
         ]
     }
 }
+/*
 
 subprojects {
 
@@ -26,4 +27,4 @@ subprojects {
     }
 
 
-}
+}*/

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prime-ms
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app:  prime-ms
+  template:
+    metadata:
+      labels:
+        app: prime-ms
+    spec:
+      nodeSelector:
+      #        environment: {{ .Release.Name }}
+      containers:
+        - name: prime-app
+          image: ayaznacafli/prime-app:1.0
+          resources:
+            limits:
+      #        memory: {{ .Values.services.coursesMs.limits.memory }}
+              cpu: "300m"
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 8087
+          env:
+   #         - name: DB_HOST
+    #          value: {{ template "fullname" . }}-postgres

@@ -2,13 +2,13 @@
 <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
-    version="6.10.0" timestamp="2020-07-25T14:52:24.603">
-<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-order-ms\src\main\java\com\prime\model\Order.java">
+    version="6.10.0" timestamp="2020-10-29T02:32:52.636">
+<file name="/home/user/Desktop/myProject/prime-app/prime-order-ms/src/main/java/com/prime/model/Order.java">
 <violation beginline="31" endline="68" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Design" package="com.prime.model" class="Order" externalInfoUrl="https://pmd.github.io/pmd-6.10.0/pmd_rules_java_design.html#toomanyfields" priority="3">
 Too many fields
 </violation>
 </file>
-<file name="C:\Users\gasan\Desktop\ayaz\prime-app\prime-order-ms\src\main\java\com\prime\service\impl\OrderServiceImpl.java">
+<file name="/home/user/Desktop/myProject/prime-app/prime-order-ms/src/main/java/com/prime/service/impl/OrderServiceImpl.java">
 <violation beginline="63" endline="63" begincolumn="34" endcolumn="34" rule="AvoidLiteralsInIfCondition" ruleset="Error Prone" package="com.prime.service.impl" class="OrderServiceImpl" method="updateOrder" externalInfoUrl="https://pmd.github.io/pmd-6.10.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition" priority="3">
 Avoid using Literals in Conditional Statements
 </violation>
