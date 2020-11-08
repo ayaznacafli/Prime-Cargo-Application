@@ -37,6 +37,9 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     runtime('com.h2database:h2')
 
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+
 
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     implementation("org.projectlombok:lombok:1.18.8")
