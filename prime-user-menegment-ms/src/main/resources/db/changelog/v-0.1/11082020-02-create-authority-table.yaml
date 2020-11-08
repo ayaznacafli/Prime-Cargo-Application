@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11082020-02
+      author: ayaznacafli
+      changes:
+        - createTable:
+            tableName: authority
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: authority_pk
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false

@@ -31,7 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,6 +64,7 @@ public class UserServiceImpl implements UserService {
         user.setStatus(UserStatus.ACTIVE);
         //Confirm email and make active status
         User result = userRepository.save(user);
+        System.out.println(result);
         return ResponseEntity.ok(new MessageResponse("Sended confirm message your email"));
     }
 
@@ -79,7 +79,6 @@ public class UserServiceImpl implements UserService {
         Set<String> authority = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toSet());
-        System.out.println(3);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Duration duration = getDuration(request.getRememberMe());
         String jwt = jwtService.issueToken(authentication, duration);

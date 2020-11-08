@@ -33,10 +33,10 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "surname")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "user_description")
@@ -60,7 +60,7 @@ public class User {
     @JoinTable(
             name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
     @BatchSize(size = 20)
     @Builder.Default
     private Set<Authority> authorities = new HashSet<>();
