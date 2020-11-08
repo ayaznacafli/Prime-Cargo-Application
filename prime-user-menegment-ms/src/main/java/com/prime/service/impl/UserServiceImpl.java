@@ -73,11 +73,13 @@ public class UserServiceImpl implements UserService {
                 request.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Duration duration = getDuration(request.getRememberMe());
         String jwt = jwtService.issueToken(authentication, duration);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
+        
         return new ResponseEntity<>(new JwtToken(jwt), httpHeaders, HttpStatus.OK);
     }
 
