@@ -22,6 +22,7 @@ kubeadmConfigPatchesJSON6902:
 nodes:
   # the control plane node config
   - role: control-plane
+    image: ubuntu:latest
   # the three workers
   - role: worker
   - role: worker

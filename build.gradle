@@ -1,22 +1,36 @@
-buildscript {
-    ext {
-        versions = [
-                fbVersion: '3.0.1',
-        ]
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion" apply false
+    id 'com.bmuschko.docker-remote-api' version "$dockerVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagerVersion" apply false
+    id 'com.google.cloud.tools.jib' version "$jlibVersion" apply false
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    apply plugin: 'java'
+
+    dependencies {
+        implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
     }
 }
-/*
 
 subprojects {
+    sourceCompatibility = jdk_version
+    targetCompatibility = jdk_version
 
-    apply plugin: 'checkstyle'
+    apply plugin: 'com.google.cloud.tools.jib'
     apply plugin: 'pmd'
+    apply plugin: 'checkstyle'
 
-    checkstyle {
-        toolVersion = '8.15'
-        configFile = file("${rootProject.projectDir}/qa/checkstyle.xml")
-        ignoreFailures = false
-    }
+    jib.container.jvmFlags = ['Xmx512m']
+
+    tasks.jib.dependsOn tasks.build
 
     pmd {
         toolVersion = '6.10.0'
@@ -26,5 +40,9 @@ subprojects {
         ruleSetFiles = files("${rootProject.projectDir}/qa/pmd.xml")
     }
 
-
-}*/
+    checkstyle {
+        toolVersion = '8.15'
+        configFile = file("${rootProject.projectDir}/qa/checkstyle.xml")
+        ignoreFailures = false
+    }
+}

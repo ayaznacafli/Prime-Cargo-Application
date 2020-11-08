@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      javax:
+        persistence:
+          query:
+            timeout: 600000
+  datasource:
+    url: &connectionUrl jdbc:mysql://${DB_CONNECTION_ADDR}:${DB_CONNECTION_PORT}/prime_order_ms?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: &username ${DB_CONNECTION_USERNAME}
+    password: &password ${DB_CONNECTION_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # changed to avoid collision with EA and IA
+  flyway:
+    url: *connectionUrl
+    schemas: prime_order_ms
+    user: *username
+    password: *password
+    baseline-on-migrate: true
+
+server:
+  port: 8087
+  servlet:
+    context-path: /api/order
