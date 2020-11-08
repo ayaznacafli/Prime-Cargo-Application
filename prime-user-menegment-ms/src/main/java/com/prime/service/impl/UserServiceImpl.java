@@ -74,11 +74,8 @@ public class UserServiceImpl implements UserService {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(),
                 request.getPassword());
 
-        System.out.println(0);
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        System.out.println(1);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        System.out.println(2);
         Set<String> authority = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toSet());

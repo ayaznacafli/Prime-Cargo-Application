@@ -25,6 +25,6 @@ spring:
     baseline-on-migrate: true
 
 server:
-  port: 8087
+  port: 8080
   servlet:
-    context-path: /api/order
+    context-path: /api/user-managment
