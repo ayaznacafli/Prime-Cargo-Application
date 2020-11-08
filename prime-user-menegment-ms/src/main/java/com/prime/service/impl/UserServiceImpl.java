@@ -10,10 +10,10 @@ import com.prime.model.User;
 import com.prime.model.enumeration.UserStatus;
 import com.prime.repository.AuthorityRepository;
 import com.prime.repository.UserRepository;
-import com.prime.service.JwtToken;
 import com.prime.service.UserService;
 import com.prime.service.payload.request.LoginRequest;
 import com.prime.service.payload.request.SigninRequest;
+import com.prime.service.payload.response.JwtResponse;
 import com.prime.service.payload.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -72,15 +74,22 @@ public class UserServiceImpl implements UserService {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(),
                 request.getPassword());
 
+        System.out.println(0);
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        System.out.println(1);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        System.out.println(2);
+        Set<String> authority = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toSet());
+        System.out.println(3);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Duration duration = getDuration(request.getRememberMe());
         String jwt = jwtService.issueToken(authentication, duration);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
-        
-        return new ResponseEntity<>(new JwtToken(jwt), httpHeaders, HttpStatus.OK);
+
+        return new ResponseEntity<>(new JwtResponse(jwt,userDetails.getId(),userDetails.getEmail(),authority), httpHeaders, HttpStatus.OK);
     }
 
     private Set<Authority> createAuthorities(ERole... authoritiesString) {
