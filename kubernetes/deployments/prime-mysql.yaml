@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      nodeSelector:
+      #        environment: {{ .Release.Name }}
+      containers:
+        - name: mysql
+          image: mysql:latest
+          resources:
+            limits:
+     #         memory: {{ .Values.services.postgres.limits.memory }}
+              cpu: "300m"
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "ayaz1997"
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql

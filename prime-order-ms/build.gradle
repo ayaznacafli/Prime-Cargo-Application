@@ -35,10 +35,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     runtimeOnly 'mysql:mysql-connector-java'
-    runtime('com.h2database:h2')
-
-    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
-
 
 
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
@@ -47,8 +43,8 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation("junit:junit")
 
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: "$swaggerVersion"
-    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: "$swaggerVersion"
+    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
 }
 
 

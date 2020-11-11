@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.8/448003bc1b234aac04b58e27d7755c12c3ec4236/lombok-1.18.8.jar" />
+        </processorPath>
+        <module name="prime.prime-order-ms.main" />
+        <module name="prime.prime-carriage-ms.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="prime.common.main" />
+        <module name="prime.prime-common-security.main" />
+        <module name="prime.prime-user-menegment-ms.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="demo.prime-order-ms" target="11" />
+      <module name="demo.prime-order-ms.main" target="11" />
+      <module name="demo.prime-order-ms.test" target="11" />
+      <module name="prime-app.common" target="11" />
+      <module name="prime-app.common.main" target="11" />
+      <module name="prime-app.common.test" target="11" />
+      <module name="prime-app.prime-carriage-ms" target="11" />
+      <module name="prime-app.prime-carriage-ms.main" target="11" />
+      <module name="prime-app.prime-carriage-ms.test" target="11" />
+      <module name="prime-app.prime-common-security" target="11" />
+      <module name="prime-app.prime-common-security.main" target="11" />
+      <module name="prime-app.prime-common-security.test" target="11" />
+      <module name="prime-app.prime-order-ms" target="11" />
+      <module name="prime-app.prime-order-ms.main" target="11" />
+      <module name="prime-app.prime-order-ms.test" target="11" />
+      <module name="prime-app.prime-user-menegment-ms" target="11" />
+      <module name="prime-app.prime-user-menegment-ms.main" target="11" />
+      <module name="prime-app.prime-user-menegment-ms.test" target="11" />
+      <module name="Prime_App.common" target="11" />
+      <module name="Prime_App.common.main" target="11" />
+      <module name="Prime_App.common.test" target="11" />
+      <module name="Prime_App.prime-carriage-ms" target="11" />
+      <module name="Prime_App.prime-carriage-ms.main" target="11" />
+      <module name="Prime_App.prime-carriage-ms.test" target="11" />
+      <module name="Prime_App.prime-common" target="11" />
+      <module name="Prime_App.prime-common-security" target="11" />
+      <module name="Prime_App.prime-common-security.main" target="11" />
+      <module name="Prime_App.prime-common-security.test" target="11" />
+      <module name="Prime_App.prime-common.main" target="11" />
+      <module name="Prime_App.prime-common.test" target="11" />
+      <module name="Prime_App.prime-order-ms" target="11" />
+      <module name="Prime_App.prime-order-ms.main" target="11" />
+      <module name="Prime_App.prime-order-ms.test" target="11" />
+      <module name="Prime_App.prime-user-menegment-ms" target="11" />
+      <module name="Prime_App.prime-user-menegment-ms.main" target="11" />
+      <module name="Prime_App.prime-user-menegment-ms.test" target="11" />
+      <module name="Prime_App.prime-user-ms" target="11" />
+      <module name="Prime_App.prime-user-ms.main" target="11" />
+      <module name="Prime_App.prime-user-ms.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
