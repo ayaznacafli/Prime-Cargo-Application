@@ -47,15 +47,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-
-    // https://mvnrepository.com/artifact/org.passay/passay
-    compile group: 'org.passay', name: 'passay', version: '1.6.0'
-    // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
-    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    implementation group: 'org.passay', name: 'passay', version: '1.6.0'
+    implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
 
 
     runtimeOnly 'mysql:mysql-connector-java'
-    runtime('com.h2database:h2')
 
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

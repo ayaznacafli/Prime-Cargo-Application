@@ -18,18 +18,13 @@ jar {
 }
 
 dependencies {
-
     compileOnly project(":common")
-
     compileOnly 'org.springframework.boot:spring-boot-starter-security'
     compileOnly 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.springframework.boot:spring-boot-starter-web'
-
     compileOnly "org.modelmapper:modelmapper:$modelmapperVersion"
-
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
     testCompileOnly 'org.springframework.boot:spring-boot-starter-web'
     testCompileOnly 'org.springframework.security:spring-security-test'
     testCompileOnly('org.springframework.boot:spring-boot-starter-test') {

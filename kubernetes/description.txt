@@ -1,0 +1,1 @@
+kind create cluster --config hack/kind-config.yaml --image=kindest/node:v1.14.2

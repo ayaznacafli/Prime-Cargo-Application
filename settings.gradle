@@ -1,7 +1,9 @@
-rootProject.name = 'Prime App'
+rootProject.name = 'prime'
 
+include ':common'
 include ':prime-common-security'
+include ':prime-user-menegment-ms'//8080
 include ':prime-order-ms'
 include ':prime-carriage-ms'
-include ':prime-user-menegment-ms'
-include ':common'
+
+
