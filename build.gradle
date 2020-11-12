@@ -21,8 +21,8 @@ allprojects {
 }
 
 subprojects {
-    sourceCompatibility = jdk_version
-    targetCompatibility = jdk_version
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     apply plugin: 'com.google.cloud.tools.jib'
     apply plugin: 'pmd'
