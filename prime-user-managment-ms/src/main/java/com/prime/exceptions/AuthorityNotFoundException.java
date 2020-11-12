@@ -2,7 +2,8 @@ package com.prime.exceptions;
 
 import com.prime.common.security.model.ERole;
 
-public class AuthorityNotFoundException extends RuntimeException{
+public class AuthorityNotFoundException extends RuntimeException {
+
     private static final long serialVersionUID = -3042686055658047285L;
 
     public AuthorityNotFoundException() {

@@ -1,22 +1,17 @@
 package com.prime.config;
 
-
-import java.util.List;
-
 import com.prime.common.security.config.AuthenticationEntryPointConfigurer;
 import com.prime.common.security.config.BaseSecurityConfig;
 import com.prime.common.security.model.SecurityProperties;
 import com.prime.common.security.service.JwtService;
 import com.prime.common.security.service.TokenAuthService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Slf4j
 @EnableWebSecurity

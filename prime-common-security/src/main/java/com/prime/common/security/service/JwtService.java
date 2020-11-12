@@ -1,6 +1,5 @@
 package com.prime.common.security.service;
 
-
 import com.prime.common.security.model.Claim;
 import com.prime.common.security.model.SecurityProperties;
 import io.jsonwebtoken.Claims;
@@ -9,17 +8,16 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.security.Key;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
+import javax.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component

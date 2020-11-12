@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.15">
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\Test.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\config\AuthFilterConfigurerAdapter.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\config\AuthenticationEntryPointConfigurer.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\config\BaseSecurityConfig.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\exceptions\InvalidJwtTokenException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\exceptions\NoTokenPresentException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\exceptions\UnauthorizedException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\exceptions\UserNotFoundException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\filters\AuthRequestFilter.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\model\Claim.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\model\ERole.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\model\SecurityProperties.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\service\AuthService.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\service\ClaimProvider.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\service\JwtService.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\service\SecurityService.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-common-security\src\main\java\com\prime\common\security\service\TokenAuthService.java">
+</file>
+</checkstyle>

@@ -15,6 +15,11 @@ import com.prime.service.payload.request.LoginRequest;
 import com.prime.service.payload.request.SigninRequest;
 import com.prime.service.payload.response.JwtResponse;
 import com.prime.service.payload.response.MessageResponse;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -27,12 +32,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -54,17 +53,20 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<?> createUser(SigninRequest request) {
         log.trace("Registration user {}", request.getUsername());
         userRepository.findUserByUsernameIgnoreCase(request.getUsername())
-                .ifPresent(user -> { throw new UsernameAlreadyUsedException(request.getUsername()); });
+                .ifPresent(user -> {
+                    throw new UsernameAlreadyUsedException(request.getUsername());
+                });
         userRepository.findUserByEmailIgnoreCase(request.getEmail())
-                .ifPresent(user -> { throw new EmailAlreadyUsedException(request.getEmail()); });
+                .ifPresent(user -> {
+                    throw new EmailAlreadyUsedException(request.getEmail());
+                });
         Set<Authority> authorities = createAuthorities(ERole.USER);
         User user = createUserEntityObject(request, authorities);
 
         user.setCreationDate(LocalDateTime.now());
         user.setStatus(UserStatus.ACTIVE);
         //Confirm email and make active status
-        User result = userRepository.save(user);
-        System.out.println(result);
+        userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("Sended confirm message your email"));
     }
 
@@ -85,14 +87,17 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new JwtResponse(jwt,userDetails.getId(),userDetails.getEmail(),authority), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(jwt,userDetails.getId(),
+                userDetails.getEmail(),authority), httpHeaders, HttpStatus.OK);
     }
 
     private Set<Authority> createAuthorities(ERole... authoritiesString) {
         Set<Authority> authorities = new HashSet<>();
         for (ERole authorityString : authoritiesString) {
-           authorities.add(authorityRepository.findAuthorityByName(authorityString).orElseThrow(() ->
-                    new AuthorityNotFoundException(authorityString)));
+            Authority authority = authorityRepository
+                    .findAuthorityByName(authorityString)
+                    .orElseThrow(() -> new AuthorityNotFoundException(authorityString));
+            authorities.add(authority);
         }
         return authorities;
     }

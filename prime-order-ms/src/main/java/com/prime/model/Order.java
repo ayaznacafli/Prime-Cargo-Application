@@ -28,6 +28,7 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings({"PMD.TooManyFields"})
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,11 +1,10 @@
 package com.prime.security;
 
 import com.prime.common.security.service.SecurityService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

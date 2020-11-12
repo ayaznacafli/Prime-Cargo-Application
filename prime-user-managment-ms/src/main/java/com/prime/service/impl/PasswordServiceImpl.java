@@ -7,13 +7,12 @@ import com.prime.repository.UserRepository;
 import com.prime.service.PasswordService;
 import com.prime.service.payload.request.PasswordRequest;
 import com.prime.service.payload.response.MessageResponse;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @Import(SecurityService.class)

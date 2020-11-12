@@ -1,18 +1,27 @@
 package com.prime.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prime.model.enumeration.UserStatus;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.BatchSize;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Data
@@ -26,7 +35,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username",  nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
     @JsonIgnore
@@ -45,7 +54,7 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "email", nullable = false )
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "status")

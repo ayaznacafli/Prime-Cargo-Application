@@ -1,17 +1,14 @@
 package com.prime.common.security.service;
 
-
 import com.prime.common.security.model.ERole;
-import org.apache.naming.EjbRef;
+import java.util.Optional;
+import java.util.stream.Stream;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
-import java.util.stream.Stream;
 
 @Component
 public class SecurityService {

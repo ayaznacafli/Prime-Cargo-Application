@@ -5,14 +5,13 @@ import com.prime.service.UserService;
 import com.prime.service.payload.request.LoginRequest;
 import com.prime.service.payload.request.PasswordRequest;
 import com.prime.service.payload.request.SigninRequest;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")

@@ -1,8 +1,12 @@
 package com.prime.common.security.service;
 
-import static com.prime.common.HttpConstants.*;
-
+import com.prime.common.HttpConstants;
 import io.jsonwebtoken.Claims;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,12 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -27,17 +25,17 @@ public final class TokenAuthService implements AuthService {
 
     @Override
     public Optional<Authentication> getAuthentication(HttpServletRequest req) {
-        return Optional.ofNullable(req.getHeader(AUTH_HEADER))
+        return Optional.ofNullable(req.getHeader(HttpConstants.AUTH_HEADER))
                 .filter(this::isBearerAuth)
                 .flatMap(this::getAuthenticationBearer);
     }
 
     private boolean isBearerAuth(String header) {
-        return header.toLowerCase().startsWith(BEARER_AUTH_HEADER.toLowerCase());
+        return header.toLowerCase().startsWith(HttpConstants.BEARER_AUTH_HEADER.toLowerCase());
     }
 
     private Optional<Authentication> getAuthenticationBearer(String header) {
-        String token = header.substring(BEARER_AUTH_HEADER.length()).trim();
+        String token = header.substring(HttpConstants.BEARER_AUTH_HEADER.length()).trim();
         Claims claims = jwtService.parseToken(token);
         log.trace("The claims parsed {}", claims);
         if (claims.getExpiration().before(new Date())) {

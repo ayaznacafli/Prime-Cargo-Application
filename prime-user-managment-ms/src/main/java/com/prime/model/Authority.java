@@ -1,17 +1,24 @@
 package com.prime.model;
 
 import com.prime.common.security.model.ERole;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@ToString
+@Table(name = "authority")
 @Getter
 @Setter
-@Table(name = "authority")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authority implements Serializable {

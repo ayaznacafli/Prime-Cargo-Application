@@ -15,9 +15,16 @@ import javax.validation.Payload;
 @Documented
 public @interface ValidEmail {
 
+    /**
+     * Gets the default message.
+     */
     String message() default "Invalid Email";
-
+    /**
+     * Gets the default groups
+     */
     Class<?>[] groups() default {};
-
+    /**
+     * Gets the default payload.
+     */
     Class<? extends Payload>[] payload() default {};
 }

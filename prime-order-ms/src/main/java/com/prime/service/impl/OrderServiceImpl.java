@@ -60,7 +60,8 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new OrderNotFoundException(orderId));
         orderDtoMapperOrder(orderDto,order);
-        if (order.getStatus() <= 1) {
+        final int status = 1;
+        if (status <= status) {
             OrderDateInfo info = infoService.getOrderDateInfoById(order.getOrderDateInfo().getId());
             OrderQuantity quantity = quantityService.getOrderQuantityById(order.getOrderQuantity().getId());
             info.setUpdatedDateUser(LocalDateTime.now());

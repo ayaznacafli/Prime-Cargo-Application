@@ -1,10 +1,9 @@
 package com.prime.common.security.model;
 
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -13,4 +12,5 @@ public class Claim {
 
     private String key;
     private Set<String> claims;
+
 }

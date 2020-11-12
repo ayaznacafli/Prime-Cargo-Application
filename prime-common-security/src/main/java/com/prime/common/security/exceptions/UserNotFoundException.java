@@ -1,6 +1,5 @@
 package com.prime.common.security.exceptions;
 
-
 import com.prime.common.exception.NotFoundException;
 
 public class UserNotFoundException extends NotFoundException {

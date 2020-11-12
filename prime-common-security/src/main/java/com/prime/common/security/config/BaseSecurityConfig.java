@@ -1,9 +1,9 @@
 package com.prime.common.security.config;
 
-import static com.prime.common.security.model.ERole.*;
-
 import com.prime.common.security.model.ERole;
 import com.prime.common.security.service.AuthService;
+import java.util.List;
+import java.util.StringJoiner;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
-import java.util.List;
-import java.util.StringJoiner;
 
 @RequiredArgsConstructor
 public class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,7 +24,7 @@ public class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
         //Disallow all requests by default unless explicitly defined in submodules
-        http.authorizeRequests().anyRequest().access(authorities(ADMIN.name()));
+        http.authorizeRequests().anyRequest().access(authorities(ERole.ADMIN.name()));
         // Apply AuthRequestFilter
         http.apply(new AuthFilterConfigurerAdapter(authServices));
     }

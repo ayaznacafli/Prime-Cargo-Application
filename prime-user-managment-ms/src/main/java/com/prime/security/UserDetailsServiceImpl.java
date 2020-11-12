@@ -5,6 +5,9 @@ import com.prime.model.User;
 import com.prime.model.enumeration.UserStatus;
 import com.prime.repository.UserRepository;
 import com.prime.service.impl.UserDetailsImpl;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,10 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -44,7 +43,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getName().name()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(user.getId(),user.getUsername(),user.getEmail(),user.getPassword(),grantedAuthorities);
+        return new UserDetailsImpl(user.getId(),user.getUsername(),
+                user.getEmail(),user.getPassword(),grantedAuthorities);
     }
 
     private void checkUserProfileStatus(User user) throws UserIsNotActiveException {
