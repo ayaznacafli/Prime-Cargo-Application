@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-mysql
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ template "fullname" . }}-mysql
+  ports:
+    - protocol: TCP
+      port: {{ .Values.services.mysql.port }}

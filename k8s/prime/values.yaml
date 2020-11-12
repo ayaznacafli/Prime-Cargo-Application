@@ -1,0 +1,29 @@
+services:
+  coursesMs:
+    replicaCount: 1
+    port: '8080'
+    image:  ingressgroup/courses-ms
+    tag: '1.0.bcf6d66'
+    limits:
+      memory: "400M"
+  userManagmentMs:
+    replicaCount: 1
+    port: '8081'
+    image:  ayaznacafli/prime-user-menegment-ms
+    tag: '1.0.bcf6d66'
+    limits:
+      memory: "400M"
+  feWebsite:
+    replicaCount: 1
+    port: '4200'
+    image:  ayaznacafli/fe-website
+    tag: '1.0.66b0c6f'
+    limits:
+      memory: "400M"
+  mysql:
+    replicaCount: 1
+    port: '3306'
+    image:  mysql
+    tag: '5.7'
+    limits:
+      memory: "400M"

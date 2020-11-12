@@ -10,7 +10,8 @@ plugins {
 
 group = 'com.prime'
 version = ''
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 allprojects {
     group = 'com.example'

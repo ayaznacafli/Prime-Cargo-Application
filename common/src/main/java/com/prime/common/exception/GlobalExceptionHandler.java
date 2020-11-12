@@ -1,8 +1,6 @@
 package com.prime.common.exception;
 
-
-import static com.prime.common.HttpResponseConstants.*;
-
+import com.prime.common.HttpResponseConstants;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -83,11 +81,11 @@ public class GlobalExceptionHandler extends DefaultErrorAttributes {
     private ResponseEntity<Map<String, Object>> ofType(WebRequest request, HttpStatus status, String message,
                                                        List validationErrors) {
         Map<String, Object> attributes = getErrorAttributes(request, ErrorAttributeOptions.defaults());
-        attributes.put(STATUS, status.value());
-        attributes.put(ERROR, status.getReasonPhrase());
-        attributes.put(MESSAGE, message);
-        attributes.put(ERRORS, validationErrors);
-        attributes.put(PATH, ((ServletWebRequest) request).getRequest().getRequestURI());
+        attributes.put(HttpResponseConstants.STATUS, status.value());
+        attributes.put(HttpResponseConstants.ERROR, status.getReasonPhrase());
+        attributes.put(HttpResponseConstants.MESSAGE, message);
+        attributes.put(HttpResponseConstants.ERRORS, validationErrors);
+        attributes.put(HttpResponseConstants.PATH, ((ServletWebRequest) request).getRequest().getRequestURI());
         return new ResponseEntity<>(attributes, status);
     }
 

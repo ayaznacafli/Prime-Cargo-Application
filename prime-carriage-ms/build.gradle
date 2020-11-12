@@ -12,6 +12,9 @@ group = 'com.example'
 version = ''
 
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 allprojects {
     group = 'com.prime'
     def hash = 'git rev-parse --short HEAD'.execute().text.trim()
