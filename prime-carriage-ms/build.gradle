@@ -5,15 +5,15 @@ import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.bmuschko.docker-remote-api'
     id 'java'
 }
 
-group = 'com.example'
+group = 'com.prime.carriage'
 version = ''
 
 
 allprojects {
-    group = 'com.prime'
     def hash = 'git rev-parse --short HEAD'.execute().text.trim()
     version = "$projectVersion.$hash"
 }
@@ -57,7 +57,7 @@ task dockerFile(type: Dockerfile, dependsOn: assemble) {
 
 task dockerBuild(type: DockerBuildImage, dependsOn: dockerFile) {
     inputDir.set(file('.'))
-    println("pushing image: $dockerRepoUrl/${project.name}:$version")
+    println("creatig image: $dockerRepoUrl/${project.name}:$version")
     images.add("$dockerRepoUrl/${project.name}:$version")
 }
 

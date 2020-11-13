@@ -5,6 +5,7 @@ import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.bmuschko.docker-remote-api'
     id 'java'
 }
 
