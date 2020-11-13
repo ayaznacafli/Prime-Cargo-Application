@@ -5,15 +5,15 @@ import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.bmuschko.docker-remote-api'
     id 'java'
 }
 
-group = 'com.prime'
+group = 'com.prime-user'
 version = ''
 
 
 allprojects {
-    group = 'com.example'
     def hash = 'git rev-parse --short HEAD'.execute().text.trim()
     version = "$projectVersion.$hash"
 }

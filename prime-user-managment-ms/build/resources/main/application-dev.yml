@@ -12,7 +12,7 @@ spring:
 #    hibernate:
 #      ddl-auto: create
   datasource:
-    url: jdbc:mysql://localhost:3306/primecargodb?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://${DB_CONNECTION_IP:localhost}:${DB_CONNECTION_PORT:3306}/primecargodb?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: ayaz1997
     driver-class-name: com.mysql.cj.jdbc.Driver

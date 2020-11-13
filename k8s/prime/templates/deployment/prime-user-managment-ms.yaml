@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-user-management-ms
+spec:
+  replicas: {{ .Values.services.userManagmentMs.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}-user-management-ms
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-user-management-ms
+    spec:
+      nodeSelector:
+      #        environment: {{ .Release.Name }}
+      containers:
+        - name: {{ template "fullname" . }}-user-management-ms
+          image: {{ .Values.services.userManagmentMs.image }}:{{ .Values.services.userManagmentMs.tag }}
+          resources:
+            limits:
+              memory: {{ .Values.services.userManagmentMs.limits.memory }}
+              cpu: "300m"
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: {{ .Values.services.userManagmentMs.port }}
+          env:
+            - name: DB_CONNECTION_IP
+              value: {{ template "fullname" . }}-mysql
