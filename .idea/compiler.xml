@@ -18,7 +18,7 @@
         </processorPath>
         <module name="prime.common.main" />
         <module name="prime.prime-common-security.main" />
-        <module name="prime.prime-user-menegment-ms.main" />
+        <module name="prime.prime-user-managment-ms.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
