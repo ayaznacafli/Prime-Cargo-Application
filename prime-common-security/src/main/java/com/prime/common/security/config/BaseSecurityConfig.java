@@ -1,9 +1,11 @@
 package com.prime.common.security.config;
 
-import com.prime.common.security.model.ERole;
 import com.prime.common.security.service.AuthService;
+import com.prime.common.security.model.ERole;
+
 import java.util.List;
 import java.util.StringJoiner;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
