@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "62a08e4f-747c-4159-a261-ae334b9af1cc",
+		"name": "Prime-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Carriage",
+			"item": [
+				{
+					"name": "Create new Carriage",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8a3c216-9c7d-43da-8639-b434b99ad319",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains carriage\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).not.null\r",
+									"    pm.expect(jsonData.categoryId).to.eql(3);\r",
+									"    pm.expect(jsonData.currencyId).to.eql(1);\r",
+									"    pm.expect(jsonData.description).to.eql(\"This is description\");\r",
+									"    pm.expect(jsonData.fromCountryId).to.eql(1);\r",
+									"    pm.expect(jsonData.toCountryId).to.eql(2);\r",
+									"    pm.expect(jsonData.invoicePrice).to.eql(20.9);\r",
+									"    pm.expect(jsonData.status).to.eql(\"NEW\");\r",
+									"    pm.expect(jsonData.storeName).to.eql(\"Defacto\");\r",
+									"    pm.expect(jsonData.invoiceFile).to.eql(\"C:\\\\Users\\\\User\\\\Desktop\\\\myProject\\\\prime-app\\\\image.jpg\")\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(\"124342DK\");\r",
+									"\r",
+									"    //set course id\r",
+									"     pm.environment.set(\"carriageId\",jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryId\": 3,\r\n  \"currencyId\": 1,\r\n  \"description\": \"This is description\",\r\n  \"fromCountryId\": 1,\r\n  \"invoiceFile\": \"C:\\\\Users\\\\User\\\\Desktop\\\\myProject\\\\prime-app\\\\image.jpg\",\r\n  \"invoicePrice\": 20.9,\r\n  \"storeName\": \"Defacto\",\r\n  \"toCountryId\": 2,\r\n  \"trackNumber\": \"124342DK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{carriage-ms}}/prime/api/carriage/create/{{userId}}/",
+							"host": [
+								"{{carriage-ms}}"
+							],
+							"path": [
+								"prime",
+								"api",
+								"carriage",
+								"create",
+								"{{userId}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -44,11 +44,11 @@ public class Carriage {
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name = "date_info_id")
-    private CarrigeDateInfo dateInfo;
+    private CarriageDateInfo dateInfo;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name = "quantity_info_id")
-    private CarrigeQuantity quantity;
+    private CarriageQuantity quantity;
 
 }
 
