@@ -17,7 +17,7 @@ public class SwaggerConfig {
 
     public Docket swagConfig() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.prime.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.prime.order.controller"))
                 .build()
                 .apiInfo(getApiInfo());
     }

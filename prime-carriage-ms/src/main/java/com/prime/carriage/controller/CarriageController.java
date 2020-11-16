@@ -46,16 +46,16 @@ public class CarriageController {
         log.trace("Create carriage request");
         CarriageResponseDto responseDto = new CarriageResponseDto();
         responseDto.setId(1L);
-        responseDto.setFromCountryId(1);
-        responseDto.setToCountryId(2);
-        responseDto.setDescription(DESCRIPTION);
-        responseDto.setCurrencyId(3);
-        responseDto.setCurrencyId(1);
-        responseDto.setInvoicePrice(20.9);
-        responseDto.setTrackNumber(TRACK_NUMBER);
-        responseDto.setStoreName(STORE_NAME);
+        responseDto.setFromCountryId(dto.getFromCountryId());
+        responseDto.setToCountryId(dto.getToCountryId());
+        responseDto.setDescription(dto.getDescription());
+        responseDto.setCategoryId(dto.getCategoryId());
+        responseDto.setCurrencyId(dto.getCurrencyId());
+        responseDto.setInvoicePrice(dto.getInvoicePrice());
+        responseDto.setTrackNumber(dto.getTrackNumber());
+        responseDto.setStoreName(dto.getStoreName());
         responseDto.setStatus(NEW);
-        responseDto.setInvoiceFile(new File("image.jpg"));
+        responseDto.setInvoiceFile(dto.getInvoiceFile());
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 

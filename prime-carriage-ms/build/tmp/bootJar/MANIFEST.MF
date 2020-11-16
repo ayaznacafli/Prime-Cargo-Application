@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Main-Class: org.springframework.boot.loader.JarLauncher
-Start-Class: com.prime.carriage.PrimeApplication
+Start-Class: com.prime.carriage.CarriageApplication
 Spring-Boot-Version: 2.3.1.RELEASE
 Spring-Boot-Classes: BOOT-INF/classes/
 Spring-Boot-Lib: BOOT-INF/lib/
