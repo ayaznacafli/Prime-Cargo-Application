@@ -10,15 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 import javax.persistence.GenerationType;
+
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "authority")
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authority implements Serializable {
