@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
                 userDetails.getEmail(),authority), httpHeaders, HttpStatus.OK);
     }
 
-    private Set<Authority> createAuthorities(ERole... authoritiesString) {
+    public Set<Authority> createAuthorities(ERole... authoritiesString) {
         Set<Authority> authorities = new HashSet<>();
         for (ERole authorityString : authoritiesString) {
             Authority authority = authorityRepository
