@@ -1,0 +1,77 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'com.bmuschko.docker-remote-api'
+    id 'java'
+}
+
+group = 'com.prime.notfication'
+version = ''
+
+
+allprojects {
+    def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+    version = "$projectVersion.$hash"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compileOnly project(":common")
+    compileOnly project(":prime-common-security")
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation("org.projectlombok:lombok:1.18.8")
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("junit:junit")
+    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
+}
+
+
+task dockerFile(type: Dockerfile, dependsOn: assemble) {
+    destFile.set(project.file('Dockerfile'))
+    from "alpine:$alpineVersion"
+    runCommand 'apk add --no-cache openjdk11'
+    copyFile "build/libs/${jar.archiveFileName.get()}", '/app/'
+    workingDir '/app/'
+    entryPoint 'java'
+    defaultCommand '-jar', "/app/${jar.archiveFileName.get()}"
+}
+
+task dockerBuild(type: DockerBuildImage, dependsOn: dockerFile) {
+    inputDir.set(file('.'))
+    println("creatig image: $dockerRepoUrl/${project.name}:$version")
+    images.add("$dockerRepoUrl/${project.name}:$version")
+}
+
+
+task dockerPush(type: DockerPushImage, dependsOn: dockerBuild) {
+    images.add("$dockerRepoUrl/${project.name}:$version")
+
+    registryCredentials.setUsername("$dockerHubUsername")
+    registryCredentials.setPassword("$dockerHubPassword")
+    registryCredentials.setEmail("$dockerHubEmail")
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -16,7 +16,9 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/prime-carriage-ms" />
             <option value="$PROJECT_DIR$/prime-common-security" />
+            <option value="$PROJECT_DIR$/prime-notfication-ms" />
             <option value="$PROJECT_DIR$/prime-order-ms" />
+            <option value="$PROJECT_DIR$/prime-payment-ms" />
             <option value="$PROJECT_DIR$/prime-user-managment-ms" />
           </set>
         </option>
