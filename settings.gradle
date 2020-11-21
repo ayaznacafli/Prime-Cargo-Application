@@ -3,7 +3,9 @@ rootProject.name = 'prime'
 include ':common'
 include ':prime-common-security'
 include ':prime-user-managment-ms'//8080
-include ':prime-order-ms'
-include ':prime-carriage-ms'
+include ':prime-carriage-ms'//8081
+include ':prime-order-ms'//8082
+include ':prime-payment-ms'//8083
+include ':prime-notfication-ms'//8084
 
 
