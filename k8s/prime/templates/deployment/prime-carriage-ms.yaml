@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-carriage-ms
+spec:
+  replicas: {{ .Values.services.carriageMs.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}-carriage-ms
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-carriage-ms
+    spec:
+      nodeSelector:
+      #        environment: {{ .Release.Name }}
+      containers:
+        - name: {{ template "fullname" . }}-carriage-ms
+          image: {{ .Values.services.carriageMs.image }}:{{ .Values.services.carriageMs.tag }}
+          resources:
+            limits:
+              memory: {{ .Values.services.carriageMs.limits.memory }}
+              cpu: "2000m"
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: {{ .Values.services.carriageMs.port }}
+          env:
+            - name: DB_CONNECTION_IP
+              value: {{ template "fullname" . }}-mysql

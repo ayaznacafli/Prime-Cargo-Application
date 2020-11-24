@@ -10,10 +10,7 @@ import javax.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -36,6 +33,11 @@ public class UserController {
     @PostMapping("/password/change")
     public ResponseEntity<?> passwordChange(@RequestBody @Valid PasswordRequest request) {
         return passwordService.changePassword(request);
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Hello World!";
     }
 
 

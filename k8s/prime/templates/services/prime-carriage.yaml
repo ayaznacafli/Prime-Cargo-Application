@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-carriage-ms
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ template "fullname" . }}-carriage-ms
+  ports:
+      - protocol: TCP
+        port: {{ .Values.services.carriageMs.port }}

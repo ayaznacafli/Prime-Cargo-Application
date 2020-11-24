@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.15">
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\UserApplication.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\config\PasswordConfig.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\config\PasswordConstants.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\config\SecurityConfiguration.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\config\SwaggerConfig.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\config\WebConfigurer.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\controller\UserController.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\AuthorityNotFoundException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\EmailAlreadyUsedException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\NewPasswordsNotMatchException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\PasswordIsIncorrectException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\UserIsNotActiveException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\exceptions\UsernameAlreadyUsedException.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\model\Authority.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\model\User.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\model\enumeration\UserStatus.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\repository\AuthorityRepository.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\repository\UserRepository.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\security\SpringSecurityAuditorAware.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\security\UserDetailsServiceImpl.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\PasswordService.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\UserService.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\impl\PasswordServiceImpl.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\impl\UserDetailsImpl.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\impl\UserServiceImpl.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\payload\request\LoginRequest.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\payload\request\PasswordRequest.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\payload\request\SigninRequest.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\payload\response\JwtResponse.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\service\payload\response\MessageResponse.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\email\EmailValidator.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\email\ValidEmail.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\password\PasswordConstraintValidator.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\password\PasswordMatches.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\password\PasswordMatchesValidator.java">
+</file>
+<file name="C:\Users\User\Desktop\myProject\prime-app\prime-user-managment-ms\src\main\java\com\prime\user\validation\password\ValidPassword.java">
+</file>
+</checkstyle>

@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+      javax:
+        persistence:
+          query:
+            timeout: 600000
+  datasource:
+    url: jdbc:h2:mem:prime_user?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: ayaz1997
+    driver-class-name: org.h2.Driver
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/iba

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-order-ms
+spec:
+  replicas: {{ .Values.services.orderMs.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}-order-ms
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-order-ms
+    spec:
+      nodeSelector:
+      #        environment: {{ .Release.Name }}
+      containers:
+        - name: {{ template "fullname" . }}-order-ms
+          image: {{ .Values.services.orderMs.image }}:{{ .Values.services.orderMs.tag }}
+          resources:
+            limits:
+              memory: {{ .Values.services.orderMs.limits.memory }}
+              cpu: "2000m"
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: {{ .Values.services.orderMs.port }}
+          env:
+            - name: DB_CONNECTION_IP
+              value: {{ template "fullname" . }}-mysql

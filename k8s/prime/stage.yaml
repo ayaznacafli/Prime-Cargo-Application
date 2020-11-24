@@ -1,1 +1,6 @@
 #Stage specific configs
+nodePublicIP: 192.168.0.104 #localhost
+prime:
+  web: web.prime.com
+  admin: admin.prime.com
+  api: api.prime.com

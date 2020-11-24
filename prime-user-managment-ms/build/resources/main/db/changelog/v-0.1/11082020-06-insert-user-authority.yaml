@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11082020-06
+      author: ayaznacafli
+      changes:
+        - insert:
+            tableName: user_authority
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(select id from user where username='user')"
+              - column:
+                  name: authority_id
+                  valueComputed: "(select id from authority where name='USER')"
+        - insert:
+            tableName: user_authority
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(select id from user where username='admin')"
+              - column:
+                  name: authority_id
+                  valueComputed: "(select id from authority where name='ADMIN')"

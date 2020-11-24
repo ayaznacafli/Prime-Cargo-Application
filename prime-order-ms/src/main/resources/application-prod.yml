@@ -11,7 +11,7 @@ spring:
           query:
             timeout: 600000
   datasource:
-    url: &connectionUrl jdbc:mysql://${DB_CONNECTION_ADDR}:${DB_CONNECTION_PORT}/prime_order_ms?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://${DB_CONNECTION_IP:localhost}:${DB_CONNECTION_PORT:3306}/primecargodb?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
     username: &username ${DB_CONNECTION_USERNAME}
     password: &password ${DB_CONNECTION_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,4 +27,4 @@ spring:
 server:
   port: 8082
   servlet:
-    context-path: /api/order
+    context-path: /api/v1/order/
