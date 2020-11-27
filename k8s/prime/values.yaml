@@ -3,21 +3,21 @@ services:
     replicaCount: 1
     port: '8080'
     image:  ayaznacafli/prime-user-managment-ms
-    tag: '0.1.366cf57'
+    tag: '0.1.5c91992'
     limits:
       memory: "400M"
   carriageMs:
     replicaCount: 1
     port: '8081'
     image: ayaznacafli/prime-carriage-ms
-    tag: '0.1.366cf57'
+    tag: '0.1.5c91992'
     limits:
       memory: "400M"
   orderMs:
     replicaCount: 1
     port: '8082'
     image: ayaznacafli/prime-order-ms
-    tag: '0.1.366cf57'
+    tag: '0.1.5c91992'
     limits:
       memory: "400M"
   mysql:

@@ -1,6 +1,6 @@
 #Prod specific configs
 nodePublicIP: 63.250.53.90
 ingress:
-  web: web.prime.com
-  admin: admin.prime.com
-  api: api.prime.com
+#  web: web.prime.com
+#  admin: admin.prime.com
+#  api: api.prime.com

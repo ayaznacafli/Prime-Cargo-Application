@@ -2,23 +2,27 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: api-prime
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+#  tls:
+#    - secretName: tls-secret
   rules:
     - host: {{ .Values.prime.api }}
       http:
         paths:
-          - path: /api/v1/carriage/
-            backend:
-              serviceName: {{ template "fullname" . }}-prime-carriage-ms
-              servicePort: {{ .Values.services.carriageMs.port }}
+#          - path: /api/v1/carriage/
+#            backend:
+#              serviceName: {{ template "fullname" . }}-carriage-ms
+#              servicePort: {{ .Values.services.carriageMs.port }}
           - path: /api/v1/user/
             backend:
-              serviceName: {{ template "fullname" . }}-prime-user-management-ms
+              serviceName: {{ template "fullname" . }}-user-management-ms
               servicePort: {{ .Values.services.userManagmentMs.port }}
-          - path: /api/v1/order/
-            backend:
-              serviceName: {{ template "fullname" . }}-prime-order-ms
-              servicePort: {{ .Values.services.orderMs.port }}
+#          - path: /api/v1/order/
+#            backend:
+#              serviceName: {{ template "fullname" . }}-order-ms
+#              servicePort: {{ .Values.services.orderMs.port }}
 
       # This section is only required if TLS is to be enabled for the Ingress
 #    tls:
