@@ -1,5 +1,5 @@
 #Stage specific configs
-nodePublicIP: 192.168.56.1
+nodePublicIP: 13.126.244.45
 prime:
   web: web.prime.cargo
   admin: admin.prime.carggo

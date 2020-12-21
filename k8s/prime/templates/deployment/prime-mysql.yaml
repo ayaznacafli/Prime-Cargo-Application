@@ -20,10 +20,8 @@ spec:
           resources:
             limits:
               memory: {{ .Values.services.mysql.limits.memory }}
-              cpu: "300m"
             requests:
-              memory: "200Mi"
-              cpu: "200m"
+              memory: "400Mi"
           ports:
             - containerPort: {{ .Values.services.mysql.port }}
           env:

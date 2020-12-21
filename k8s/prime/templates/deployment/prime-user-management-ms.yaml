@@ -20,10 +20,8 @@ spec:
           resources:
             limits:
               memory: {{ .Values.services.userManagmentMs.limits.memory }}
-              cpu: "2000m"
             requests:
-              memory: "200Mi"
-              cpu: "200m"
+              memory: "400Mi"
           ports:
             - containerPort: {{ .Values.services.userManagmentMs.port }}
           env:

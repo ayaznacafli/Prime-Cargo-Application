@@ -3,11 +3,11 @@ services:
   mysql:
     image: mysql:latest
     volumes:
-      - mdm-csdr-mas-app_db_data:/var/lib/mysql
+      - myvolume:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ayaz1997
     ports:
       - 3306:3306
 
 volumes:
-  mdm-csdr-mas-app_db_data:
+  myvolume:

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11082020-05
+      author: ayaznacafli
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: 'user'
+              - column:
+                  name: password
+                  value: '$2a$10$RX07/3dQZqSHEXllw1G0o.knmLMwTc4wc2NfE.QD16a0PtpBcC5Qa' #User1997!
+              - column:
+                  name: first_name
+                  value: 'User'
+              - column:
+                  name: last_name
+                  value: 'User'
+              - column:
+                  name: user_description
+                  value: 'Default user'
+              - column:
+                  name: phone
+                  value: '+994507522200'
+              - column:
+                  name: email
+                  value: 'user@mail.ru'
+              - column:
+                  name: status
+                  value: 'ACTIVE'
+              - column:
+                  name: creation_date
+                  valueDate: now()
